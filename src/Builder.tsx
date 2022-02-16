@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -9,23 +10,53 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import { useSet } from '@react-hookz/web/esnext';
 
-import { QuestionId } from './App';
+import { QuestionId, Solution } from './App';
 
 type Inputs = Record<QuestionId, string> & { recommendedEngine: string };
+
+interface BaseAnswer {
+    label: string,
+    conclusion: string,
+}
+
+type NextAnswer = BaseAnswer & {
+    nextQuestionId: QuestionId,
+}
+
+type FinalAnswer = BaseAnswer & {
+    solution: Solution,
+}
+
+type Answer = NextAnswer | FinalAnswer;
 
 interface BuilderProps {
     questions: {
         id: QuestionId,
         question: string,
-        answers: { label: string, conclusion: string, nextQuestionId: QuestionId }[]
+        answers: Answer[]
     }[];
 }
+
+const isFinalAnswer = (answer: Answer): answer is FinalAnswer => {
+    return (answer as FinalAnswer).solution !== undefined;
+}
+
 export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
   const { control } = useForm<Inputs>();
   const visibleQuestionIds = useSet([QuestionId.AccessPatterns]);
+  const [solution, setSolution] = useState<Solution>()
 
   const addQuestion = (id: QuestionId) => {
     visibleQuestionIds.add(id);
+  }
+
+  const processAnswer = (answer: Answer) => {
+      if (isFinalAnswer(answer)) {
+        setSolution(answer.solution);
+        return;
+      }
+
+      addQuestion(answer.nextQuestionId);
   }
 
   return (
@@ -42,14 +73,15 @@ export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
                             <FormControl {...field} >
                                     <FormLabel id="demo-radio-buttons-group-label" >{question}</FormLabel>
                                     <RadioGroup row >
-                                        {answers.map(({ label, nextQuestionId }) =>
-                                            <FormControlLabel key={label} value={label} control={<Radio />} onClick={() => addQuestion(nextQuestionId)} label={label} />
+                                        {answers.map((answer) =>
+                                            <FormControlLabel key={answer.label} value={answer.label} control={<Radio />} onClick={() => processAnswer(answer)} label={answer.label} />
                                         )}
                                     </RadioGroup>
                             </FormControl>)
                         }
                     />
                 )}
+                <div>{solution}</div>
             </Stack>
     </form>
     </Container>

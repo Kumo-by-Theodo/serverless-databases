@@ -8,6 +8,10 @@ export enum QuestionId {
   Cache = "Cache",
 }
 
+export enum Solution {
+  DynamoDB = "DynamoDB"
+}
+
 const questions = [
   {
     id: QuestionId.AccessPatterns,
@@ -21,16 +25,16 @@ const questions = [
     id: QuestionId.Fast,
     question: "Do you need fast access?",
     answers: [
-        { label: "Yes", conclusion: "I need speed" },
-        { label: "No", conclusion: "I need slow" },
+        { label: "Yes", conclusion: "I need speed", solution: Solution.DynamoDB },
+        { label: "No", conclusion: "I need slow", solution: Solution.DynamoDB },
     ]
   },
   {
     id: QuestionId.Cache,
     question: "Do you need cache?",
     answers: [
-        { label: "Yes", conclusion: "I need cache" },
-        { label: "No", conclusion: "I don't know" },
+        { label: "Yes", conclusion: "I need cache", solution: Solution.DynamoDB },
+        { label: "No", conclusion: "I don't know", solution: Solution.DynamoDB },
     ]
   }
 ];

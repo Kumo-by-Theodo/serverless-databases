@@ -38,9 +38,9 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
                 <Typography variant="h2">{name}</Typography>
                 <Typography variant="body1">{description}</Typography>
                 <Stack direction="row" spacing={4}>
-                    <Button variant="contained" href={documentationUrl}>Documentation</Button>
-                    <Button variant="contained" href={awesomeUrl}>Awesome Repository</Button>
-                    <Button variant="contained" href={implementationUrl}>Implementation example</Button>
+                    <Button variant="contained" target="_blank" href={documentationUrl}>Documentation</Button>
+                    <Button variant="contained" target="_blank"href={awesomeUrl}>Awesome Repository</Button>
+                    <Button variant="contained" target="_blank" href={implementationUrl}>Implementation example</Button>
                 </Stack>
             </Stack>
         </Stack>

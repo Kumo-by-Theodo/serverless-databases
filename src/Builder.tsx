@@ -10,7 +10,8 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import { useSet } from '@react-hookz/web/esnext';
 
-import { QuestionId, Solution } from './App';
+import { QuestionId, Solution as SolutionType } from './App';
+import { Solution } from './Solution';
 
 type Inputs = Record<QuestionId, string> & { recommendedEngine: string };
 
@@ -24,7 +25,7 @@ type NextAnswer = BaseAnswer & {
 }
 
 type FinalAnswer = BaseAnswer & {
-    solution: Solution,
+    solution: SolutionType,
 }
 
 type Answer = NextAnswer | FinalAnswer;
@@ -44,7 +45,7 @@ const isFinalAnswer = (answer: Answer): answer is FinalAnswer => {
 export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
   const { control } = useForm<Inputs>();
   const visibleQuestionIds = useSet([QuestionId.AccessPatterns]);
-  const [solution, setSolution] = useState<Solution>()
+  const [solution, setSolution] = useState<SolutionType>()
 
   const addQuestion = (id: QuestionId) => {
     visibleQuestionIds.add(id);
@@ -81,8 +82,8 @@ export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
                         }
                     />
                 )}
-                <div>{solution}</div>
             </Stack>
+            {solution && <Solution solution={solution} />}
     </form>
     </Container>
   );

@@ -14,6 +14,7 @@ import auroraServerless from "./icons/auroraServerless.svg";
 import qldb from "./icons/qldb.svg";
 import timestream from "./icons/timestream.svg";
 import neptune from "./icons/neptune.svg";
+import athenaS3 from "./icons/athenaS3.svg";
 
 interface SolutionDescription {
     name: string;
@@ -92,10 +93,24 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     releaseDate: "2018",
     tags: ["VPC needed"],
     pricing: SolutionPrice.Cheap,
-    description: "Graph-oriented AWS managed database.",
+    description:
+      "Graph-oriented AWS managed database. Its query processing engine is optimized for leading graph query languages, Apache TinkerPop™ Gremlin and the W3C’s RDF SPARQL.",
     documentationUrl:
       "https://docs.aws.amazon.com/neptune/latest/userguide/intro.html",
-    implementationUrl: "",
+    implementationUrl: "https://github.com/dabit3/cdk-appsync-neptune",
+  },
+  AthenaS3: {
+    name: "Athena with S3",
+    src: athenaS3,
+    releaseDate: "2016",
+    tags: ["Pay per use"],
+    pricing: SolutionPrice.Cheap,
+    description:
+      "Amazon Athena is an interactive query service that makes it easy to analyze data directly in Amazon Simple Storage Service (Amazon S3) using standard SQL.",
+    documentationUrl:
+      "https://docs.aws.amazon.com/athena/latest/ug/what-is.html",
+    implementationUrl:
+      "https://github.com/theodo/serverless-databases/tree/main/athena",
   },
 };
 

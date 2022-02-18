@@ -13,7 +13,8 @@ export enum Solution {
   AuroraServerless = "AuroraServerless",
   QLDB = "QLDB",
   Timestream = "Timestream",
-  Neptune = "Neptune"
+  Neptune = "Neptune",
+  AthenaS3 = "AthenaS3"
 }
 
 const questions = [

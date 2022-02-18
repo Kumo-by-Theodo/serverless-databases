@@ -9,7 +9,8 @@ export enum QuestionId {
 }
 
 export enum Solution {
-  DynamoDB = "DynamoDB"
+  DynamoDB = "DynamoDB",
+  AuroraServerless = "AuroraServerless"
 }
 
 const questions = [
@@ -33,7 +34,7 @@ const questions = [
     id: QuestionId.Cache,
     question: "Do you need cache?",
     answers: [
-        { label: "Yes", conclusion: "I need cache", solution: Solution.DynamoDB },
+        { label: "Yes", conclusion: "I need cache", solution: Solution.AuroraServerless },
         { label: "No", conclusion: "I don't know", solution: Solution.DynamoDB },
     ]
   }

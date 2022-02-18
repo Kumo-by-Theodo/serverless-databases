@@ -18,7 +18,7 @@ interface SolutionDescription {
     pricing: SolutionPrice;
     description: string;
     documentationUrl: string;
-    awesomeUrl: string;
+    awesomeUrl?: string;
     implementationUrl: string;
 }
 
@@ -37,7 +37,14 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
         documentationUrl: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
         awesomeUrl: "https://github.com/alexdebrie/awesome-dynamodb",
         implementationUrl: "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
-    }
+    },
+  "AuroraServerless": {
+        name: "Aurora Serverless",
+        src: "src/icons/auroraServerless.svg",
+        description: "Amazon Aurora Serverless is an on-demand, auto-scaling configuration for Amazon Aurora. It automatically starts up, shuts down, and scales capacity up or down based on your application's needs. It enables you to run your database in the cloud without managing any database capacity.",
+        documentationUrl: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html",
+        implementationUrl: "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
+  }
 }
 
 interface SolutionProps {
@@ -61,7 +68,7 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
                 <Typography variant="body1">{description}</Typography>
                 <Stack direction="row" spacing={4}>
                     <Button variant="contained" target="_blank" href={documentationUrl}>Documentation</Button>
-                    <Button variant="contained" target="_blank"href={awesomeUrl}>Awesome Repository</Button>
+                    { awesomeUrl !== undefined && <Button variant="contained" target="_blank"href={awesomeUrl}>Awesome Repository</Button>}
                     <Button variant="contained" target="_blank" href={implementationUrl}>Implementation example</Button>
                 </Stack>
             </Stack>

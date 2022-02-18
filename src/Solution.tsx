@@ -13,6 +13,7 @@ import dynamodb from "./icons/dynamodb.svg";
 import auroraServerless from "./icons/auroraServerless.svg";
 import qldb from "./icons/qldb.svg";
 import timestream from "./icons/timestream.svg";
+import neptune from "./icons/neptune.svg";
 
 interface SolutionDescription {
     name: string;
@@ -87,9 +88,9 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
   },
   Neptune: {
     name: "Neptune",
-    src: "src/icons/neptune.svg",
+    src: neptune,
     releaseDate: "2018",
-      tags: ["VPC needed"],
+    tags: ["VPC needed"],
     pricing: SolutionPrice.Cheap,
     description: "Graph-oriented AWS managed database.",
     documentationUrl:

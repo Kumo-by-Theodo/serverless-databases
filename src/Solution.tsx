@@ -62,7 +62,7 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
                     <Chip icon={<EventIcon />} label={releaseDate} variant="outlined" />
                 </Stack>
                 <Stack direction="row" spacing={2}>
-                    <Chip icon={<EuroIcon />} label={pricing} color={ pricing === SolutionPrice.Cheap ? "success" : "error" } variant="outlined" />
+                    <Chip icon={<EuroIcon />} label={pricing} color={pricing === SolutionPrice.Cheap ? "success" : "error"} variant="outlined" />
                     <Chip icon={<LanguageIcon />} label="Parti-QL compatible" color="success" variant="outlined" />
                 </Stack>
                 <Typography variant="body1">{description}</Typography>

@@ -103,26 +103,60 @@ interface SolutionProps {
 }
 
 export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
-    const { name, src, releaseDate, pricing, description, documentationUrl, awesomeUrl, implementationUrl } = solutionDescriptions[solution];
+    const { name, src, releaseDate, pricing, description, documentationUrl, awesomeUrl, implementationUrl, tags } = solutionDescriptions[solution];
     return (
-        <Stack direction="row" spacing={4}>
-            <Avatar alt={name} src={src} variant="square" sx={{ marginTop: 2, height: 120, width: 120 }}/>
-            <Stack spacing={2}>
-                <Typography variant="h2">{name}</Typography>
-                <Stack direction="row" spacing={2}>
-                    <Chip icon={<EventIcon />} label={releaseDate} variant="outlined" />
-                </Stack>
-                <Stack direction="row" spacing={2}>
-                    <Chip icon={<EuroIcon />} label={pricing} color={pricing === SolutionPrice.Cheap ? "success" : "error"} variant="outlined" />
-                    <Chip icon={<LanguageIcon />} label="Parti-QL compatible" color="success" variant="outlined" />
-                </Stack>
-                <Typography variant="body1">{description}</Typography>
-                <Stack direction="row" spacing={4}>
-                    <Button variant="contained" target="_blank" href={documentationUrl}>Documentation</Button>
-                    { awesomeUrl !== undefined && <Button variant="contained" target="_blank"href={awesomeUrl}>Awesome Repository</Button>}
-                    <Button variant="contained" target="_blank" href={implementationUrl}>Implementation example</Button>
-                </Stack>
-            </Stack>
+      <Stack direction="row" spacing={4}>
+        <Avatar
+          alt={name}
+          src={src}
+          variant="square"
+          sx={{ marginTop: 2, height: 120, width: 120 }}
+        />
+        <Stack spacing={2}>
+          <Typography variant="h2">{name}</Typography>
+          <Stack direction="row" spacing={2}>
+            <Chip icon={<EventIcon />} label={releaseDate} variant="outlined" />
+          </Stack>
+          <Stack direction="row" spacing={2}>
+            <Chip
+              icon={<EuroIcon />}
+              label={pricing}
+              color={pricing === SolutionPrice.Cheap ? "success" : "error"}
+              variant="outlined"
+            />
+            <Chip
+              icon={<LanguageIcon />}
+              label="Parti-QL compatible"
+              color="success"
+              variant="outlined"
+            />
+            {tags.map((tag) => (
+              <Chip
+                label={tag}
+                color="secondary"
+                variant="outlined"
+              />
+            ))}
+          </Stack>
+          <Typography variant="body1">{description}</Typography>
+          <Stack direction="row" spacing={4}>
+            <Button variant="contained" target="_blank" href={documentationUrl}>
+              Documentation
+            </Button>
+            {awesomeUrl !== undefined && (
+              <Button variant="contained" target="_blank" href={awesomeUrl}>
+                Awesome Repository
+              </Button>
+            )}
+            <Button
+              variant="contained"
+              target="_blank"
+              href={implementationUrl}
+            >
+              Implementation example
+            </Button>
+          </Stack>
         </Stack>
-    )
+      </Stack>
+    );
 }

@@ -10,7 +10,9 @@ export enum QuestionId {
 
 export enum Solution {
   DynamoDB = "DynamoDB",
-  AuroraServerless = "AuroraServerless"
+  AuroraServerless = "AuroraServerless",
+  QLDB = "QLDB",
+  Timestream = "Timestream",
 }
 
 const questions = [

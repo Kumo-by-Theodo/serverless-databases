@@ -10,6 +10,9 @@ import EventIcon from '@mui/icons-material/Event';
 import { Solution as SolutionType } from "./App";
 
 import dynamodb from "./icons/dynamodb.svg";
+import auroraServerless from "./icons/auroraServerless.svg";
+import qldb from "./icons/qldb.svg";
+import timestream from "./icons/timestream.svg";
 
 interface SolutionDescription {
     name: string;
@@ -34,17 +37,39 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
         releaseDate: "2012",
         pricing: SolutionPrice.Cheap,
         description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        documentationUrl: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
+        documentationUrl: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/index.html",
         awesomeUrl: "https://github.com/alexdebrie/awesome-dynamodb",
         implementationUrl: "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
     },
-  "AuroraServerless": {
+    "AuroraServerless": {
         name: "Aurora Serverless",
-        src: "src/icons/auroraServerless.svg",
+        src: auroraServerless,
+        releaseDate: "2018",
+        pricing: SolutionPrice.Cheap,
         description: "Amazon Aurora Serverless is an on-demand, auto-scaling configuration for Amazon Aurora. It automatically starts up, shuts down, and scales capacity up or down based on your application's needs. It enables you to run your database in the cloud without managing any database capacity.",
         documentationUrl: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html",
         implementationUrl: "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
-  }
+    },
+    "QLDB": {
+        name: "Quantum Ledger Database",
+        src: qldb,
+        releaseDate: "2019",
+        pricing: SolutionPrice.Cheap,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        documentationUrl: "https://docs.aws.amazon.com/qldb/latest/developerguide/index.html",
+        awesomeUrl: "https://github.com/mlewis7127/awesome-qldb",
+        implementationUrl: "https://www.google.com",
+    },
+    "Timestream": {
+        name: "Timestream",
+        src: timestream,
+        releaseDate: "2020",
+        pricing: SolutionPrice.Cheap,
+        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        documentationUrl: "https://docs.aws.amazon.com/timestream/latest/developerguide/index.html",
+        awesomeUrl: "https://github.com/awslabs/amazon-timestream-tools",
+        implementationUrl: "https://www.google.com",
+    },
 }
 
 interface SolutionProps {

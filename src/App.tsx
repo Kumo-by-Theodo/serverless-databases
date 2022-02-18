@@ -13,6 +13,7 @@ export enum Solution {
   AuroraServerless = "AuroraServerless",
   QLDB = "QLDB",
   Timestream = "Timestream",
+  Neptune = "Neptune"
 }
 
 const questions = [
@@ -29,7 +30,7 @@ const questions = [
     question: "Do you need fast access?",
     answers: [
         { label: "Yes", conclusion: "I need speed", solution: Solution.DynamoDB },
-        { label: "No", conclusion: "I need slow", solution: Solution.DynamoDB },
+        { label: "No", conclusion: "I need slow", solution: Solution.Neptune },
     ]
   },
   {

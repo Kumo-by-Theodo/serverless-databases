@@ -1,11 +1,15 @@
 import { Navigation } from './Navigation';
 import { Builder } from './Builder';
 import { CssBaseline } from '@mui/material';
+import Container from "@mui/material/Container";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Solutions } from './Solutions';
 
 export enum QuestionId {
   AccessPatterns = "AccessPatterns",
   Fast = "Fast",
   Cache = "Cache",
+  Time = "Time",
 }
 
 export enum Solution {
@@ -32,6 +36,7 @@ const questions = [
     answers: [
         { label: "Yes", conclusion: "I need speed", solution: Solution.DynamoDB },
         { label: "No", conclusion: "I need slow", solution: Solution.Neptune },
+        { label: "Timestreams", conclusion: "I need slow", solution: Solution.DynamoDB },
     ]
   },
   {
@@ -39,6 +44,14 @@ const questions = [
     question: "Do you need cache?",
     answers: [
         { label: "Yes", conclusion: "I need cache", solution: Solution.AuroraServerless },
+        { label: "No", conclusion: "I don't know", solution: Solution.DynamoDB },
+    ]
+  },
+  {
+    id: QuestionId.Time,
+    question: "Is your data a serie of timestamped data points?",
+    answers: [
+        { label: "Yes", conclusion: "I need a time series database", solution: Solution.Timestream },
         { label: "No", conclusion: "I don't know", solution: Solution.DynamoDB },
     ]
   }
@@ -49,8 +62,16 @@ function App() {
     <>
       <CssBaseline />
       <div className="App">
-        <Navigation />
-        <Builder questions={questions} />
+        <BrowserRouter basename="/serverless-databases">
+          <Navigation />
+          <Container maxWidth="md" >
+            <Routes>
+              <Route path="/" element={<h1>hello, this is the home</h1>} />
+              <Route path="/builder" element={<Builder questions={questions} />} />
+              <Route path="/solutions" element={<Solutions />} />
+            </Routes>
+          </Container>
+        </BrowserRouter>
       </div>
     </>
   )

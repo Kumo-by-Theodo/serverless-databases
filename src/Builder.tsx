@@ -7,7 +7,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Stack from "@mui/material/Stack";
-import Container from "@mui/material/Container";
 import { useSet } from '@react-hookz/web/esnext';
 
 import { QuestionId, Solution as SolutionType } from './App';
@@ -61,7 +60,6 @@ export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
   }
 
   return (
-    <Container maxWidth="md" >
         <form>
             <Stack spacing={2}>
                 {questions.filter(({ id }) => visibleQuestionIds.has(id)).map(({ id, question, answers }) => 
@@ -85,6 +83,5 @@ export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
             </Stack>
             {solution && <Solution solution={solution} />}
     </form>
-    </Container>
   );
 }

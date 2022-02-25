@@ -43,7 +43,7 @@ const isFinalAnswer = (answer: Answer): answer is FinalAnswer => {
 
 export const Builder: FunctionComponent<BuilderProps> = ({questions}) => {
   const { control } = useForm<Inputs>();
-  const visibleQuestionIds = useSet([QuestionId.AccessPatterns]);
+  const visibleQuestionIds = useSet([QuestionId.Cache]);
   const [solution, setSolution] = useState<SolutionType>()
 
   const addQuestion = (id: QuestionId) => {

@@ -15,6 +15,7 @@ import qldb from "./icons/qldb.svg";
 import timestream from "./icons/timestream.svg";
 import neptune from "./icons/neptune.svg";
 import athenaS3 from "./icons/athenaS3.svg";
+import s3 from "./icons/s3.svg";
 
 interface SolutionDescription {
     name: string;
@@ -112,6 +113,19 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     implementationUrl:
       "https://github.com/theodo/serverless-databases/tree/main/athena",
   },
+  S3Select: {
+    name: "S3 Select",
+    src: s3,
+    releaseDate: "2018",
+    tags: ["Pay per use"],
+    pricing: SolutionPrice.Cheap,
+    description:
+      "S3 Select enables applications to retrieve only a subset of data from an object by using simple SQL expressions.",
+    documentationUrl:
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/selecting-content-from-objects.html",
+    implementationUrl:
+      "https://aws.amazon.com/fr/blogs/developer/introducing-support-for-amazon-s3-select-in-the-aws-sdk-for-javascript/",
+  }
 };
 
 interface SolutionProps {

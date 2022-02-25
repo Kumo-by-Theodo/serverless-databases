@@ -19,7 +19,8 @@ export enum Solution {
   QLDB = "QLDB",
   Timestream = "Timestream",
   Neptune = "Neptune",
-  AthenaS3 = "AthenaS3"
+  AthenaS3 = "AthenaS3",
+  S3Select = "S3Select",
 }
 
 const questions = [

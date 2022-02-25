@@ -7,6 +7,7 @@ import { Solutions } from './Solutions';
 
 export enum QuestionId {
   AccessPatterns = "AccessPatterns",
+  Temperature = "Temperature",
   Fast = "Fast",
   Cache = "Cache",
   Time = "Time",
@@ -28,6 +29,14 @@ const questions = [
     answers: [
         { label: "Yes", conclusion: "I have more than 5 access patterns to my data", nextQuestionId: QuestionId.Fast },
         { label: "No", conclusion: "I have less than 5 access patterns to my data", nextQuestionId: QuestionId.Cache },
+    ]
+  },
+  {
+    id: QuestionId.Temperature,
+    question: "What is the more frequent operations on your data?",
+    answers: [
+        { label: "Write operations", conclusion: "I need an OTLP solution", nextQuestionId: QuestionId.Fast },
+        { label: "Read operations", conclusion: "I need an OLAP solution", nextQuestionId: QuestionId.Cache },
     ]
   },
   {

@@ -146,6 +146,30 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     implementationUrl: "",
     infrastructure: InfrastructureType.Managed,
   },
+  DocumentDB: {
+    name: "DocumentDB",
+    src: "",
+    releaseDate: "",
+    tags: [],
+    pricing: SolutionPrice.Expensive,
+    description: "DocumentDB (with MongoDB compatibility)",
+    documentationUrl:
+      "https://docs.aws.amazon.com/managedservices/latest/userguide/document-db.html",
+    implementationUrl: "",
+    infrastructure: InfrastructureType.Managed,
+  },
+  [SolutionType.OpenSearch]: {
+    name: "OpenSearch (ex-ElasticSearch)",
+    src: "",
+    releaseDate: "",
+    tags: [],
+    pricing: SolutionPrice.Expensive,
+    description: "OpenSearch (ex-ElasticSearch)",
+    documentationUrl:
+      "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html",
+    implementationUrl: "",
+    infrastructure: InfrastructureType.Managed,
+  },
 };
 
 interface SolutionProps {

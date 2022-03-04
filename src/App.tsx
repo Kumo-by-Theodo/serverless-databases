@@ -29,6 +29,8 @@ export enum Solution {
   Neptune = "Neptune",
   AthenaS3 = "AthenaS3",
   S3Select = "S3Select",
+  DocumentDB = "DocumentDB",
+  OpenSearch = "OpenSearch (ex-ElasticSearch)",
 }
 
 const questions = [

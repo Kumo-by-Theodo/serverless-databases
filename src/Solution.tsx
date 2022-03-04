@@ -23,6 +23,9 @@ import neptune from "./icons/neptune.svg";
 import athenaS3 from "./icons/athenaS3.svg";
 import s3 from "./icons/s3.svg";
 import redshift from "./icons/redshift.svg";
+import opensearch from "./icons/opensearch.svg";
+import rds from "./icons/rds.svg";
+import documentdb from "./icons/documentdb.svg";
 
 enum MigrationService {
   DMS = "Database Migration Service",
@@ -154,7 +157,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
   },
   RDS: {
     name: "RDS",
-    src: "",
+    src: rds,
     releaseDate: "",
     tags: [],
     pricing: SolutionPrice.Expensive,
@@ -166,7 +169,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
   },
   DocumentDB: {
     name: "DocumentDB",
-    src: "",
+    src: documentdb,
     releaseDate: "",
     tags: [],
     pricing: SolutionPrice.Expensive,
@@ -179,7 +182,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
   },
   OpenSearch: {
     name: "OpenSearch (ex-ElasticSearch)",
-    src: "",
+    src: opensearch,
     releaseDate: "",
     tags: [],
     pricing: SolutionPrice.Expensive,

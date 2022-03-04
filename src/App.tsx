@@ -30,7 +30,8 @@ export enum Solution {
   AthenaS3 = "AthenaS3",
   S3Select = "S3Select",
   DocumentDB = "DocumentDB",
-  OpenSearch = "OpenSearch (ex-ElasticSearch)",
+  OpenSearch = "OpenSearch",
+  Redshift = "Redshift",
 }
 
 const questions = [

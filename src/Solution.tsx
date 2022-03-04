@@ -17,6 +17,12 @@ import neptune from "./icons/neptune.svg";
 import athenaS3 from "./icons/athenaS3.svg";
 import s3 from "./icons/s3.svg";
 
+enum InfrastructureType {
+  SelfHosted = "SelfHosted",
+  Managed = "Managed",
+  Serverless = "Serverless"
+}
+
 interface SolutionDescription {
     name: string;
     src: string;
@@ -27,6 +33,7 @@ interface SolutionDescription {
     documentationUrl: string;
     awesomeUrl?: string;
     implementationUrl: string;
+    infrastructure?: InfrastructureType;
 }
 
 enum SolutionPrice {

@@ -6,6 +6,7 @@ import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import EuroIcon from '@mui/icons-material/Euro';
 import LanguageIcon from '@mui/icons-material/Language';
+import StorageIcon from "@mui/icons-material/Storage";
 import EventIcon from '@mui/icons-material/Event';
 import { Solution as SolutionType } from "./App";
 
@@ -16,12 +17,8 @@ import timestream from "./icons/timestream.svg";
 import neptune from "./icons/neptune.svg";
 import athenaS3 from "./icons/athenaS3.svg";
 import s3 from "./icons/s3.svg";
-
-enum InfrastructureType {
-  SelfHosted = "SelfHosted",
-  Managed = "Managed",
-  Serverless = "Serverless"
-}
+import { Link } from "react-router-dom";
+import { InfrastructureType } from './enums'
 
 interface SolutionDescription {
     name: string;
@@ -55,6 +52,7 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     awesomeUrl: "https://github.com/alexdebrie/awesome-dynamodb",
     implementationUrl:
       "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
+    infrastructure: InfrastructureType.Serverless,
   },
   AuroraServerless: {
     name: "Aurora Serverless",
@@ -68,6 +66,7 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html",
     implementationUrl:
       "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
+    infrastructure: InfrastructureType.Serverless,
   },
   QLDB: {
     name: "Quantum Ledger Database",
@@ -94,6 +93,7 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       "https://docs.aws.amazon.com/timestream/latest/developerguide/index.html",
     awesomeUrl: "https://github.com/awslabs/amazon-timestream-tools",
     implementationUrl: "https://www.google.com",
+    infrastructure: InfrastructureType.Serverless,
   },
   Neptune: {
     name: "Neptune",
@@ -106,6 +106,7 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     documentationUrl:
       "https://docs.aws.amazon.com/neptune/latest/userguide/intro.html",
     implementationUrl: "https://github.com/dabit3/cdk-appsync-neptune",
+    infrastructure: InfrastructureType.Managed,
   },
   AthenaS3: {
     name: "Athena with S3",
@@ -119,6 +120,7 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       "https://docs.aws.amazon.com/athena/latest/ug/what-is.html",
     implementationUrl:
       "https://github.com/theodo/serverless-databases/tree/main/athena",
+    infrastructure: InfrastructureType.Serverless,
   },
   S3Select: {
     name: "S3 Select",
@@ -132,7 +134,18 @@ const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       "https://docs.aws.amazon.com/AmazonS3/latest/userguide/selecting-content-from-objects.html",
     implementationUrl:
       "https://aws.amazon.com/fr/blogs/developer/introducing-support-for-amazon-s3-select-in-the-aws-sdk-for-javascript/",
-  }
+  },
+  RDS: {
+    name: "RDS",
+    src: "",
+    releaseDate: "",
+    tags: [],
+    pricing: SolutionPrice.Expensive,
+    description: "RDS description",
+    documentationUrl: "https://docs.aws.amazon.com/rds/index.html",
+    implementationUrl: "",
+    infrastructure: InfrastructureType.Managed,
+  },
 };
 
 interface SolutionProps {
@@ -140,7 +153,7 @@ interface SolutionProps {
 }
 
 export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
-    const { name, src, releaseDate, pricing, description, documentationUrl, awesomeUrl, implementationUrl, tags } = solutionDescriptions[solution];
+    const { name, src, releaseDate, pricing, description, documentationUrl, awesomeUrl, implementationUrl, tags, infrastructure } = solutionDescriptions[solution];
     return (
       <Stack direction="row" spacing={4}>
         <Avatar
@@ -167,12 +180,18 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
               color="success"
               variant="outlined"
             />
+            {infrastructure && (
+              <Link to='/infrastructures' >
+                <Chip
+                  icon={<StorageIcon />}  
+                  label={infrastructure}
+                  color="info"
+                  variant="outlined"
+                  />
+              </Link>
+            )}
             {tags.map((tag) => (
-              <Chip
-                label={tag}
-                color="secondary"
-                variant="outlined"
-              />
+              <Chip label={tag} color="secondary" variant="outlined" />
             ))}
           </Stack>
           <Typography variant="body1">{description}</Typography>

@@ -4,6 +4,7 @@ import { CssBaseline } from '@mui/material';
 import Container from "@mui/material/Container";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Solutions } from './Solutions';
+import { Infrastructures } from './Infrastructures';
 
 export enum QuestionId {
   AcessPatternsNumber = "AccessPatternsNumber",
@@ -22,6 +23,7 @@ export enum QuestionId {
 export enum Solution {
   DynamoDB = "DynamoDB",
   AuroraServerless = "AuroraServerless",
+  RDS = "RDS",
   QLDB = "QLDB",
   Timestream = "Timestream",
   Neptune = "Neptune",
@@ -103,17 +105,21 @@ function App() {
       <div className="App">
         <BrowserRouter basename="/serverless-databases">
           <Navigation />
-          <Container maxWidth="md" >
+          <Container maxWidth="md">
             <Routes>
               <Route path="/" element={<h1>hello, this is the home</h1>} />
-              <Route path="/builder" element={<Builder questions={questions} />} />
+              <Route
+                path="/builder"
+                element={<Builder questions={questions} />}
+              />
               <Route path="/solutions" element={<Solutions />} />
+              <Route path="/infrastructures" element={<Infrastructures />} />
             </Routes>
           </Container>
         </BrowserRouter>
       </div>
     </>
-  )
+  );
 }
 
 export default App

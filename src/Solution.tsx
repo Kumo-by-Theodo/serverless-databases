@@ -48,7 +48,7 @@ enum SolutionPrice {
     Expensive = "Expensive",
 }
 
-const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
+export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
   DynamoDB: {
     name: "DynamoDB",
     src: dynamodb,

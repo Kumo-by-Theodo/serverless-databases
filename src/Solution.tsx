@@ -10,8 +10,10 @@ import LanguageIcon from '@mui/icons-material/Language';
 import StorageIcon from "@mui/icons-material/Storage";
 import EventIcon from '@mui/icons-material/Event';
 import { Solution as SolutionType } from "./App";
-import { Link } from "react-router-dom";
 import { InfrastructureType } from './enums'
+import { Accordion, AccordionDetails, AccordionSummary, Link } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import dynamodb from "./icons/dynamodb.svg";
 import databaseMigrationService from "./icons/databaseMigrationService.svg";
@@ -32,6 +34,11 @@ enum MigrationService {
   Glue = "Glue"
 }
 
+interface TypescriptLibrary {
+  name: string;
+  link: string;
+}
+
 interface SolutionDescription {
     name: string;
     src: string;
@@ -44,6 +51,7 @@ interface SolutionDescription {
     implementationUrl: string;
     infrastructure?: InfrastructureType;
     dataMigrationServices: MigrationService[];
+    typescriptLibraries?: TypescriptLibrary[];
 }
 
 enum SolutionPrice {
@@ -67,6 +75,16 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
     infrastructure: InfrastructureType.Serverless,
     dataMigrationServices: [MigrationService.DMS, MigrationService.Glue],
+    typescriptLibraries: [
+      {
+        name: "DynamoDB One Table",
+        link: "https://github.com/sensedeep/dynamodb-onetable",
+      },
+      {
+        name: "DynamoDB Toolbox",
+        link: "https://github.com/jeremydaly/dynamodb-toolbox",
+      },
+    ],
   },
   AuroraServerless: {
     name: "Aurora Serverless",
@@ -82,6 +100,20 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       "https://github.com/serverless/examples/tree/v3/aws-node-express-dynamodb-api",
     infrastructure: InfrastructureType.Serverless,
     dataMigrationServices: [MigrationService.Glue],
+    typescriptLibraries: [
+      {
+        name: "TypeORM",
+        link: "https://github.com/typeorm/typeorm",
+      },
+      {
+        name: "Prisma",
+        link: "https://github.com/prisma/prisma",
+      },
+      {
+        name: "MikroORM",
+        link: "https://github.com/mikro-orm/mikro-orm",
+      },
+    ],
   },
   QLDB: {
     name: "Quantum Ledger Database",
@@ -215,7 +247,7 @@ interface SolutionProps {
 }
 
 export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
-    const { name, src, releaseDate, pricing, description, documentationUrl, awesomeUrl, implementationUrl, tags, infrastructure, dataMigrationServices } = solutionDescriptions[solution];
+    const { name, src, releaseDate, pricing, description, documentationUrl, awesomeUrl, implementationUrl, tags, infrastructure, dataMigrationServices, typescriptLibraries } = solutionDescriptions[solution];
     return (
       <Stack direction="row" spacing={4}>
         <Avatar
@@ -244,7 +276,7 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
               variant="outlined"
             />
             {infrastructure && (
-              <Link to='/infrastructures' >
+              <Link href='/infrastructures' >
                 <Chip
                   icon={<StorageIcon />}  
                   label={infrastructure}
@@ -300,6 +332,24 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
               Implementation example
             </Button>
           </Stack>
+          {typescriptLibraries && (
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Typescript libraries</Typography>
+              </AccordionSummary>
+              {typescriptLibraries.map(library =>
+                <AccordionDetails>
+                  <Stack direction="row" spacing={2}>
+                    <GitHubIcon/> <Link href={library.link}>{library.name}</Link>
+                  </Stack>
+                </AccordionDetails>
+              )}
+            </Accordion>
+          )}
         </Stack>
       </Stack>
     );

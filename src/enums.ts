@@ -1,5 +1,5 @@
 export enum InfrastructureType {
-  SelfHosted = "SelfHosted",
-  Managed = "Managed",
-  Serverless = "Serverless"
+  SelfHosted = 'SelfHosted',
+  Managed = 'Managed',
+  Serverless = 'Serverless'
 }

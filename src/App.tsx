@@ -1,10 +1,13 @@
 import { CssBaseline } from '@mui/material';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Builder } from './Builder';
 import { Navigation } from './Navigation';
 import { Solutions } from './Solutions';
 import { Infrastructures } from './Infrastructures';
+import { Home } from './Home';
+import background from './images/background-dune.webp';
 
 export enum QuestionId {
   AcessPatternsNumber = 'AccessPatternsNumber',
@@ -112,12 +115,22 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <div className="App">
+      <Paper
+        variant='elevation'
+        elevation={0}
+        sx={{
+          backgroundImage: `url(${background})`,
+          backgroundPosition: 'bottom',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
         <BrowserRouter basename="/serverless-databases">
           <Navigation />
           <Container maxWidth="md">
             <Routes>
-              <Route path="/" element={<h1>hello, this is the home</h1>} />
+              <Route path="/" element={<Home />} />
               <Route
                 path="/builder"
                 element={<Builder questions={questions} />}
@@ -127,7 +140,7 @@ function App() {
             </Routes>
           </Container>
         </BrowserRouter>
-      </div>
+      </Paper>
     </>
   );
 }

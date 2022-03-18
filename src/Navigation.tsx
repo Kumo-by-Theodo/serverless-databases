@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const Navigation: FunctionComponent = () => (
   <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="absolute" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar>
         <MenuItem component={Link} to="/">
           <HomeIcon />

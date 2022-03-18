@@ -16,14 +16,12 @@ export enum QuestionId {
   RelationsCount = 'RelationsCount',
   DataInRelations = 'DataInRelations',
   SearchCatalogue = 'SearchCatalogue',
-  SearchAccessbility = 'SearchAccessibility',
   MachineLearning = 'MachineLearning',
 }
 
 export enum Solution {
   DynamoDB = 'DynamoDB',
   AuroraServerless = 'AuroraServerless',
-  RDS = 'RDS',
   QLDB = 'QLDB',
   Timestream = 'Timestream',
   Neptune = 'Neptune',
@@ -32,17 +30,18 @@ export enum Solution {
   DocumentDB = 'DocumentDB',
   OpenSearch = 'OpenSearch',
   Redshift = 'Redshift',
+  EMR = 'EMR',
 }
 
 const questions = [
-  {
-    id: QuestionId.Cache,
-    question: 'Does your data need to be in persistent storage?',
-    answers: [
-      { label: 'Yes', conclusion: 'I need a database', nextQuestionId: QuestionId.Temperature },
-      { label: 'No', conclusion: 'I need a cache system', solution: Solution.DynamoDB },
-    ],
-  },
+  // {
+  //   id: QuestionId.Cache,
+  //   question: 'Does your data need to be in persistent storage?',
+  //   answers: [
+  //     { label: 'Yes', conclusion: 'I need a database', nextQuestionId: QuestionId.Temperature },
+  //     { label: 'No', conclusion: 'I need a cache system', solution: Solution.DynamoDB },
+  //   ],
+  // },
   {
     id: QuestionId.Temperature,
     question: 'What is the more frequent operations on your data?',
@@ -64,7 +63,7 @@ const questions = [
     question: 'Do you already know the access patterns for your data?',
     answers: [
       { label: 'Yes', conclusion: 'I know the acess patterns for my data', nextQuestionId: QuestionId.AcessPatternsNumber },
-      { label: 'No', conclusion: 'I do not know the acess patterns for my data', nextQuestionId: QuestionId.SearchCatalogue },
+      { label: 'No', conclusion: 'I do not know the acess patterns for my data', solution: Solution.DocumentDB },
     ],
   },
   {
@@ -80,7 +79,7 @@ const questions = [
     question: '[WIP] Do you have a lot of relations between your entities',
     answers: [
       { label: 'Yes', conclusion: 'I have a lot of relations between my entities', nextQuestionId: QuestionId.DataInRelations },
-      { label: 'No', conclusion: 'TODO: I do not have a lot of relations between my entities', solution: Solution.DynamoDB },
+      { label: 'No', conclusion: 'I do not have a lot of relations between my entities', solution: Solution.DocumentDB },
     ],
   },
   {
@@ -93,10 +92,18 @@ const questions = [
   },
   {
     id: QuestionId.Time,
-    question: 'Is your data a serie of timestamped data points?',
+    question: 'Is your data a series of timestamped data points?',
     answers: [
       { label: 'Yes', conclusion: 'I need a time series database', solution: Solution.Timestream },
-      { label: 'No', conclusion: "I don't know", solution: Solution.DynamoDB },
+      { label: 'No', conclusion: 'I need a database with an immutable history log', solution: Solution.QLDB },
+    ],
+  },
+  {
+    id: QuestionId.MachineLearning,
+    question: 'Will I run machine learning processes on my data?',
+    answers: [
+      { label: 'Yes', conclusion: 'I will run machine learning process on my data', solution: Solution.EMR },
+      { label: 'No', conclusion: 'I need a database with an immutable history log', solution: Solution.S3Select },
     ],
   },
 ];

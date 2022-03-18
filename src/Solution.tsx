@@ -28,12 +28,12 @@ import athenaS3 from './icons/athenaS3.svg';
 import s3 from './icons/s3.svg';
 import redshift from './icons/redshift.svg';
 import opensearch from './icons/opensearch.svg';
-import rds from './icons/rds.svg';
 import documentdb from './icons/documentdb.svg';
+import emr from './icons/emr.svg';
 
 enum MigrationService {
   DMS = 'Database Migration Service',
-  Glue = 'Glue'
+  Glue = 'Glue',
 }
 
 interface TypescriptLibrary {
@@ -69,7 +69,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     tags: [],
     pricing: SolutionPrice.Cheap,
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      'Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale.',
     documentationUrl:
       'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/index.html',
     awesomeUrl: 'https://github.com/alexdebrie/awesome-dynamodb',
@@ -95,7 +95,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     tags: [],
     pricing: SolutionPrice.Cheap,
     description:
-      "Amazon Aurora Serverless is an on-demand, auto-scaling configuration for Amazon Aurora. It automatically starts up, shuts down, and scales capacity up or down based on your application's needs. It enables you to run your database in the cloud without managing any database capacity.",
+      'Amazon Aurora Serverless is an on-demand, auto-scaling configuration for Amazon Aurora. It allows you to deploy a serverless relational database supporting MySQL and PostgreSQL.',
     documentationUrl:
       'https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html',
     implementationUrl:
@@ -124,7 +124,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     tags: [],
     pricing: SolutionPrice.Cheap,
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      'Amazon Quantum Ledger Database (QLDB) is a fully managed ledger database that provides a transparent, immutable, and cryptographically verifiable transaction log.',
     documentationUrl:
       'https://docs.aws.amazon.com/qldb/latest/developerguide/index.html',
     awesomeUrl: 'https://github.com/mlewis7127/awesome-qldb',
@@ -138,7 +138,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     tags: [],
     pricing: SolutionPrice.Cheap,
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      'Amazon Timestream is a fast, scalable, and serverless time series database service for IoT and operational applications that makes it easy to store and analyze trillions of events per day up to 1,000 times faster and at as little as 1/10th the cost of relational databases.',
     documentationUrl:
       'https://docs.aws.amazon.com/timestream/latest/developerguide/index.html',
     awesomeUrl: 'https://github.com/awslabs/amazon-timestream-tools',
@@ -150,7 +150,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     name: 'Neptune',
     src: neptune,
     releaseDate: '2018',
-    tags: ['VPC needed'],
+    tags: ['VPC'],
     pricing: SolutionPrice.Cheap,
     description:
       'Graph-oriented AWS managed database. Its query processing engine is optimized for leading graph query languages, Apache TinkerPop™ Gremlin and the W3C’s RDF SPARQL.',
@@ -189,25 +189,13 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       'https://aws.amazon.com/fr/blogs/developer/introducing-support-for-amazon-s3-select-in-the-aws-sdk-for-javascript/',
     dataMigrationServices: [MigrationService.Glue],
   },
-  RDS: {
-    name: 'RDS',
-    src: rds,
-    releaseDate: '',
-    tags: [],
-    pricing: SolutionPrice.Expensive,
-    description: 'RDS description',
-    documentationUrl: 'https://docs.aws.amazon.com/rds/index.html',
-    implementationUrl: '',
-    infrastructure: InfrastructureType.Managed,
-    dataMigrationServices: [MigrationService.DMS, MigrationService.Glue],
-  },
   DocumentDB: {
     name: 'DocumentDB',
     src: documentdb,
     releaseDate: '',
-    tags: [],
+    tags: ['VPC'],
     pricing: SolutionPrice.Expensive,
-    description: 'DocumentDB (with MongoDB compatibility)',
+    description: 'Amazon DocumentDB is a scalable, highly durable, and fully managed database service for operating mission-critical MongoDB workloads.',
     documentationUrl:
       'https://docs.aws.amazon.com/managedservices/latest/userguide/document-db.html',
     implementationUrl: '',
@@ -220,7 +208,7 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
     releaseDate: '',
     tags: [],
     pricing: SolutionPrice.Expensive,
-    description: 'OpenSearch (ex-ElasticSearch)',
+    description: 'Amazon OpenSearch Service makes it easy for you to perform interactive log analytics, real-time application monitoring, website search, and more.',
     documentationUrl:
       'https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html',
     implementationUrl: '',
@@ -241,6 +229,21 @@ export const solutionDescriptions: Record<SolutionType, SolutionDescription> = {
       'https://docs.aws.amazon.com/redshift/latest/gsg/index.html',
     infrastructure: InfrastructureType.Serverless,
     dataMigrationServices: [MigrationService.Glue],
+  },
+  EMR: {
+    name: 'EMR',
+    src: emr,
+    releaseDate: '2009',
+    tags: [],
+    pricing: SolutionPrice.Expensive,
+    description:
+      'Amazon EMR is a cloud big data platform for running large-scale distributed data processing jobs, interactive SQL queries, and machine learning applications using open-source analytics frameworks such as Apache Spark, Apache Hive, and Presto.',
+    documentationUrl:
+      'https://docs.aws.amazon.com/emr/',
+    implementationUrl:
+      'https://docs.aws.amazon.com/emr/',
+    infrastructure: InfrastructureType.Serverless,
+    dataMigrationServices: [],
   },
 };
 

@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { useSet } from '@react-hookz/web/esnext';
 
-import { Button } from '@mui/material';
+import { Button, Divider } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { QuestionId, Solution as SolutionType } from './App';
 import { Solution } from './Solution';
@@ -74,7 +74,7 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
               key={id}
               name={id}
               control={control}
-              render={({ field }) => (field.value ? <span>{answers.find(({ label }) => label === field.value)?.conclusion}</span> : (
+              render={({ field }) => (field.value ? <span style={{ marginTop: 10 }}>{answers.find(({ label }) => label === field.value)?.conclusion}</span> : (
                 <FormControl {...field}>
                   <FormLabel id="demo-radio-buttons-group-label">{question}</FormLabel>
                   <RadioGroup row>
@@ -86,7 +86,13 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
           ))}
         </Stack>
       </form>
-      {solution && <Solution solution={solution} />}
+      {solution && (
+        <Stack>
+          <Divider sx={{ marginTop: 1 }} />
+          <span style={{ fontWeight: 600, marginTop: 10 }}>You preffered solution for data storage is...</span>
+          <Solution solution={solution} />
+        </Stack>
+      )}
       {solution && (
         <Stack direction="row-reverse" sx={{ padding: 10 }}>
           <Button startIcon={<SendIcon />} variant="contained" size="large" onClick={sendFeedbackEmail}>

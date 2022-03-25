@@ -283,7 +283,7 @@ export const Solution: FunctionComponent<SolutionProps> = ({ solution }) => {
             variant="outlined"
           />
           {infrastructure && (
-          <Link href="/infrastructures">
+          <Link href="/serverless-databases/infrastructures">
             <Chip
               icon={<StorageIcon />}
               label={infrastructure}

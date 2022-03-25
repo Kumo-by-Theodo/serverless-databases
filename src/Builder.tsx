@@ -61,7 +61,7 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
   };
 
   return (
-    <Box sx={{ height: '100vh'}}>
+    <Box sx={{ height: '100vh' }}>
       <form>
         <Stack spacing={2}>
           {questions.filter(({ id }) => visibleQuestionIds.has(id)).map(({ id, question, answers }) => (
@@ -81,7 +81,7 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
           ))}
         </Stack>
       </form>
-      {!solution && <LinearProgress variant='determinate' value={20} />}
+      {!solution && <LinearProgress variant="determinate" value={20} />}
       {solution && <Solution solution={solution} />}
     </Box>
   );

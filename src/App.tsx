@@ -116,7 +116,7 @@ function App() {
     <>
       <CssBaseline />
       <Paper
-        variant='elevation'
+        variant="elevation"
         elevation={0}
         sx={{
           backgroundImage: `url(${background})`,

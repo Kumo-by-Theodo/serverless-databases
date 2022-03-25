@@ -8,7 +8,7 @@ import { SideNavigation } from './SideNavigation';
 export const Solutions: FunctionComponent = () => (
   <>
     <SideNavigation />
-    <Stack>
+    <Stack sx={{ paddingLeft: 10 }}>
       {Object.values(SolutionType).sort((a, b) => a.localeCompare(b)).map((solution) => (
         <Card sx={{ marginBottom: 2, marginTop: 2, padding: 2 }} id={solution}>
           <Solution solution={solution} />

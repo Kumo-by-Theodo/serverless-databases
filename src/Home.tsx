@@ -19,7 +19,7 @@ export const Home: React.FunctionComponent = () => (
     </Typography>
     <Stack sx={{ padding: 5, justifyContent: 'space-around' }}>
       <Button component={Link} to="/builder" variant="contained" size="large">
-        Try it now!
+        Try it now
       </Button>
     </Stack>
     <Box

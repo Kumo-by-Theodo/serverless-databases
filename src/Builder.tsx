@@ -7,10 +7,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import { useSet } from '@react-hookz/web/esnext';
 
+import { Button } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import { QuestionId, Solution as SolutionType } from './App';
 import { Solution } from './Solution';
 
@@ -45,7 +46,6 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
   const { control } = useForm<Inputs>();
   const visibleQuestionIds = useSet([questions[0].id]);
   const [solution, setSolution] = useState<SolutionType>();
-  const [progress, setProgress] = useState(10);
 
   const addQuestion = (id: QuestionId) => {
     visibleQuestionIds.add(id);
@@ -58,6 +58,11 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
     }
 
     addQuestion(answer.nextQuestionId);
+  };
+
+  const sendFeedbackEmail = () => {
+    window.location.href = 'mailto:serverless-databases@theodo.fr'
+      + `?subject=${encodeURIComponent(`Feeback on serverless database selector - ${solution}`)}`;
   };
 
   return (
@@ -81,8 +86,14 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
           ))}
         </Stack>
       </form>
-      {!solution && <LinearProgress variant="determinate" value={20} />}
       {solution && <Solution solution={solution} />}
+      {solution && (
+        <Stack direction="row-reverse" sx={{ padding: 10 }}>
+          <Button startIcon={<SendIcon />} variant="contained" size="large" onClick={sendFeedbackEmail}>
+            Send feedback
+          </Button>
+        </Stack>
+      )}
     </Box>
   );
 };

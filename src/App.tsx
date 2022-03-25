@@ -50,7 +50,7 @@ const questions = [
     question: 'What is the more frequent operations on your data?',
     answers: [
       { label: 'Write operations', conclusion: 'I need an OTLP solution', nextQuestionId: QuestionId.Temporality },
-      { label: 'Read operations', conclusion: 'TODO: I need an OLAP solution', solution: Solution.DynamoDB },
+      { label: 'Read operations', conclusion: 'I need an OLAP solution', nextQuestionId: QuestionId.MachineLearning },
     ],
   },
   {
@@ -58,7 +58,7 @@ const questions = [
     question: 'Is history an important part of your data?',
     answers: [
       { label: 'Yes', conclusion: 'Data history is important', nextQuestionId: QuestionId.Time },
-      { label: 'No', conclusion: 'Data history is not important', nextQuestionId: QuestionId.AcessPatternsNumber },
+      { label: 'No', conclusion: 'Data history is not important', nextQuestionId: QuestionId.AcessPatternsKnown },
     ],
   },
   {
@@ -66,7 +66,15 @@ const questions = [
     question: 'Do you already know the access patterns for your data?',
     answers: [
       { label: 'Yes', conclusion: 'I know the acess patterns for my data', nextQuestionId: QuestionId.AcessPatternsNumber },
-      { label: 'No', conclusion: 'I do not know the acess patterns for my data', solution: Solution.DocumentDB },
+      { label: 'No', conclusion: 'I do not know the acess patterns for my data', nextQuestionId: QuestionId.SearchCatalogue },
+    ],
+  },
+  {
+    id: QuestionId.SearchCatalogue,
+    question: 'Will you be searching through large catalog of data?',
+    answers: [
+      { label: 'Yes', conclusion: "I'm looking for a searchable catalog solution", solution: Solution.OpenSearch },
+      { label: 'No', conclusion: "I don't need a searchable catalog", solution: Solution.DocumentDB },
     ],
   },
   {
@@ -79,7 +87,7 @@ const questions = [
   },
   {
     id: QuestionId.RelationsCount,
-    question: '[WIP] Do you have a lot of relations between your entities',
+    question: 'Do you have a lot of relations between your entities',
     answers: [
       { label: 'Yes', conclusion: 'I have a lot of relations between my entities', nextQuestionId: QuestionId.DataInRelations },
       { label: 'No', conclusion: 'I do not have a lot of relations between my entities', solution: Solution.DocumentDB },
@@ -106,7 +114,7 @@ const questions = [
     question: 'Will I run machine learning processes on my data?',
     answers: [
       { label: 'Yes', conclusion: 'I will run machine learning process on my data', solution: Solution.EMR },
-      { label: 'No', conclusion: 'I need a database with an immutable history log', solution: Solution.S3Select },
+      { label: 'No', conclusion: 'I have no machine learning application for my data', solution: Solution.S3Select },
     ],
   },
 ];

@@ -68,13 +68,13 @@ export const Builder: FunctionComponent<BuilderProps> = ({ questions }) => {
   return (
     <Box sx={{ height: '100vh' }}>
       <form>
-        <Stack spacing={2}>
+        <Stack sx={{ marginTop: 2 }} spacing={2}>
           {questions.filter(({ id }) => visibleQuestionIds.has(id)).map(({ id, question, answers }) => (
             <Controller
               key={id}
               name={id}
               control={control}
-              render={({ field }) => (field.value ? <span style={{ marginTop: 10 }}>{answers.find(({ label }) => label === field.value)?.conclusion}</span> : (
+              render={({ field }) => (field.value ? <span>{answers.find(({ label }) => label === field.value)?.conclusion}</span> : (
                 <FormControl {...field}>
                   <FormLabel id="demo-radio-buttons-group-label">{question}</FormLabel>
                   <RadioGroup row>
